@@ -1,0 +1,20 @@
+const express = require("express");
+const bodyParser =require('body-parser');
+const cors = require("cors");
+require("dotenv");
+const app = express();
+const db = require("./src/config/database");
+db.sync();
+app.use(bodyParser.urlencoded({extended:false})); 
+app.use(bodyParser.json()); 
+app.use(express.json());
+// const {register,login} =require("./src/controllers/sign.up.user.controller");
+app.post("/register",require("./src/controllers/sign.up.user.controller").register);
+app.post("/login",require("./src/controllers/sign.up.user.controller").login);
+app.get("/");
+app.post("/addUser",require("./src/controllers/addRecord.controller"));
+PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+    db.authenticate();
+   console.log(`Server is running on port ${PORT}.`);
+});
