@@ -30,7 +30,7 @@ module.exports = () => {
     allowNull: false
   },
   phoneNo: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     allowNull: false
   },
 
